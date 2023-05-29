@@ -14,6 +14,8 @@ const RenderesTest = () => {
     };
 
     window.addEventListener("mousemove", changeColor);
+
+    return window.removeEventListener("mousemove", changeColor);
   }, []);
 
   const increaseCounter = () => {
