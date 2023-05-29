@@ -1,10 +1,24 @@
 import { useState, useEffect } from "react";
 import Test from "./Test";
+import DivTest from "./DivTest";
+import "./styles/renderedTest.css";
 
 const RenderesTest = () => {
   const [show, setShow]: any[] = useState([]);
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("blue");
+  const [showDiv, setShowDiv] = useState("not-active");
+  const [toggle, setToggle] = useState(false);
+
+  const activeDiv = () => {
+    setToggle((toggle) => !toggle);
+
+    if (toggle === true) {
+      setShowDiv("active");
+    } else setShowDiv("not-active");
+
+    return toggle;
+  };
 
   useEffect(() => {
     const changeColor = (event: any) => {
@@ -15,7 +29,11 @@ const RenderesTest = () => {
 
     window.addEventListener("mousemove", changeColor);
 
-    return window.removeEventListener("mousemove", changeColor);
+    const removeListener = () => {
+      window.removeEventListener("mousemove", changeColor);
+    };
+
+    return removeListener;
   }, []);
 
   const increaseCounter = () => {
@@ -42,6 +60,7 @@ const RenderesTest = () => {
         <p>{count}</p>
         <button onClick={decreaseCounter}>-</button>
       </div>
+      <DivTest classDiv={showDiv} onClick={activeDiv} />
     </>
   );
 };

@@ -1,0 +1,9 @@
+.active{
+    background-color: green;
+    width: 700px;
+    height: 700px;
+}
+
+.not-active{
+    display: none;
+}
